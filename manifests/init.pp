@@ -282,6 +282,9 @@ class supervisor(
   if $enable_logrotate == true {
     file { '/etc/logrotate.d/supervisor':
       ensure  => $file_ensure,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
       source  => 'puppet:///modules/supervisor/logrotate',
       require => Package[$supervisor::params::package],
     }
